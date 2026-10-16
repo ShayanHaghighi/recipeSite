@@ -1,0 +1,76 @@
+<svg width="800" height="1000" viewBox="0 0 800 1000" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="breadBg" cx="50%" cy="40%" r="65%">
+      <stop offset="0%" stop-color="#2c221e"/>
+      <stop offset="60%" stop-color="#181311"/>
+      <stop offset="100%" stop-color="#0a0807"/>
+    </radialGradient>
+    <radialGradient id="crustGradient" cx="45%" cy="38%" r="60%">
+      <stop offset="0%" stop-color="#d97706"/>
+      <stop offset="45%" stop-color="#92400e"/>
+      <stop offset="85%" stop-color="#451a03"/>
+      <stop offset="100%" stop-color="#1f0b02"/>
+    </radialGradient>
+    <radialGradient id="crumbGlow" cx="50%" cy="45%" r="50%">
+      <stop offset="0%" stop-color="#fef3c7"/>
+      <stop offset="65%" stop-color="#fde68a"/>
+      <stop offset="100%" stop-color="#d97706"/>
+    </radialGradient>
+    <filter id="breadGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="10" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+
+  <!-- Dark baker bench background -->
+  <rect width="800" height="1000" fill="url(#breadBg)"/>
+
+  <!-- Flour dust scatter on board -->
+  <g fill="#ffffff" opacity="0.18" filter="url(#breadGlow)">
+    <circle cx="260" cy="280" r="80"/>
+    <circle cx="560" cy="310" r="70"/>
+    <circle cx="220" cy="620" r="90"/>
+    <circle cx="580" cy="670" r="85"/>
+  </g>
+  <g fill="#f8fafc" opacity="0.4">
+    <circle cx="210" cy="240" r="3"/><circle cx="240" cy="260" r="2"/><circle cx="290" cy="250" r="2.5"/>
+    <circle cx="530" cy="290" r="3"/><circle cx="570" cy="320" r="2.5"/><circle cx="610" cy="280" r="2"/>
+    <circle cx="200" cy="650" r="2.5"/><circle cx="230" cy="690" r="3"/><circle cx="270" cy="670" r="2"/>
+    <circle cx="560" cy="710" r="2.5"/><circle cx="600" cy="680" r="3"/><circle cx="540" cy="650" r="2"/>
+  </g>
+
+  <!-- Cutting board -->
+  <rect x="120" y="240" width="560" height="520" rx="16" fill="#1c1613" stroke="#2d221c" stroke-width="4"/>
+  
+  <!-- Bread shadow -->
+  <ellipse cx="400" cy="510" rx="240" ry="210" fill="#040303" opacity="0.9" filter="url(#breadGlow)"/>
+
+  <!-- Main Sourdough Boule Body -->
+  <ellipse cx="400" cy="480" rx="225" ry="195" fill="url(#crustGradient)" stroke="#2e1005" stroke-width="4"/>
+
+  <!-- Crust blisters & textured scoring ridges -->
+  <path d="M 230 470 C 270 380, 360 340, 480 360 C 560 380, 600 450, 570 520 C 540 590, 430 630, 330 610 C 250 590, 210 520, 230 470 Z" fill="url(#crustGradient)" opacity="0.95"/>
+
+  <!-- Prominent Sourdough "Ear" / Deep Baker Score -->
+  <path d="M 270 410 Q 380 340 520 420 Q 420 460 270 410 Z" fill="#2d1203" stroke="#160802" stroke-width="3"/>
+  <path d="M 280 415 Q 385 350 510 425 Q 415 450 280 415 Z" fill="url(#crumbGlow)"/>
+
+  <!-- Interior airy crumb texture inside the burst ear -->
+  <g fill="#b45309" opacity="0.6">
+    <ellipse cx="360" cy="405" rx="10" ry="6"/>
+    <ellipse cx="410" cy="415" rx="14" ry="8"/>
+    <ellipse cx="460" cy="430" rx="9" ry="5"/>
+    <ellipse cx="320" cy="415" rx="8" ry="5"/>
+  </g>
+
+  <!-- Flour dusting on upper crust -->
+  <path d="M 290 370 Q 360 310 460 330 Q 380 370 290 370 Z" fill="#ffffff" opacity="0.65" filter="url(#breadGlow)"/>
+  <path d="M 330 540 Q 430 610 510 570 Q 450 540 330 540 Z" fill="#ffffff" opacity="0.45" filter="url(#breadGlow)"/>
+
+  <!-- Crisp blister dots on the crust -->
+  <g fill="#fde68a" opacity="0.5">
+    <circle cx="280" cy="470" r="3.5"/><circle cx="310" cy="490" r="3"/><circle cx="330" cy="460" r="2.5"/>
+    <circle cx="490" cy="480" r="4"/><circle cx="520" cy="450" r="3"/><circle cx="530" cy="500" r="3.5"/>
+    <circle cx="370" cy="550" r="3"/><circle cx="420" cy="570" r="3.5"/><circle cx="460" cy="540" r="2.5"/>
+  </g>
+</svg>

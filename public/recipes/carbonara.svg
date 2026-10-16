@@ -1,0 +1,99 @@
+<svg width="800" height="1000" viewBox="0 0 800 1000" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#3a2e2b"/>
+      <stop offset="60%" stop-color="#1f1816"/>
+      <stop offset="100%" stop-color="#0d0a09"/>
+    </radialGradient>
+    <radialGradient id="plate" cx="45%" cy="45%" r="55%">
+      <stop offset="0%" stop-color="#2a2523"/>
+      <stop offset="85%" stop-color="#181413"/>
+      <stop offset="100%" stop-color="#0a0808"/>
+    </radialGradient>
+    <radialGradient id="pastaGlow" cx="48%" cy="46%" r="50%">
+      <stop offset="0%" stop-color="#ffd56b"/>
+      <stop offset="40%" stop-color="#f59e0b"/>
+      <stop offset="75%" stop-color="#d97706"/>
+      <stop offset="100%" stop-color="#92400e"/>
+    </radialGradient>
+    <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+
+  <!-- Dark rustic tabletop -->
+  <rect width="800" height="1000" fill="url(#bg)"/>
+  
+  <!-- Tabletop woodgrain lines -->
+  <path d="M 0 150 Q 400 140 800 155" stroke="#261e1b" stroke-width="2" fill="none" opacity="0.6"/>
+  <path d="M 0 420 Q 400 435 800 415" stroke="#261e1b" stroke-width="3" fill="none" opacity="0.4"/>
+  <path d="M 0 780 Q 400 770 800 790" stroke="#261e1b" stroke-width="2" fill="none" opacity="0.5"/>
+
+  <!-- Linen napkin under plate -->
+  <polygon points="120,280 620,180 680,680 160,740" fill="#1e1b19" opacity="0.7"/>
+
+  <!-- Plate shadow -->
+  <ellipse cx="400" cy="520" rx="310" ry="290" fill="#050404" opacity="0.8" filter="url(#softGlow)"/>
+
+  <!-- Stoneware plate rim -->
+  <ellipse cx="400" cy="500" rx="290" ry="270" fill="url(#plate)" stroke="#4a3e39" stroke-width="6"/>
+  <ellipse cx="400" cy="500" rx="275" ry="255" fill="none" stroke="#2b2421" stroke-width="2"/>
+
+  <!-- Pasta bed -->
+  <ellipse cx="400" cy="500" rx="200" ry="180" fill="url(#pastaGlow)" filter="url(#softGlow)"/>
+
+  <!-- Spaghetti swirls -->
+  <g stroke="#fef08a" stroke-width="6" fill="none" stroke-linecap="round" opacity="0.9">
+    <path d="M 310 460 C 330 420, 390 410, 440 450 C 490 490, 430 550, 370 540 C 320 530, 310 470, 380 460"/>
+    <path d="M 340 510 C 370 570, 450 560, 480 500 C 500 460, 430 430, 380 470 C 350 500, 380 540, 420 530"/>
+    <path d="M 280 480 C 310 430, 370 420, 420 440 C 480 470, 470 530, 410 550 C 350 560, 310 500, 360 480"/>
+    <path d="M 360 410 C 410 390, 470 420, 460 470 C 450 510, 390 530, 350 500"/>
+    <path d="M 300 520 C 340 560, 430 570, 470 520 C 510 470, 460 440, 400 450"/>
+  </g>
+  <g stroke="#fde047" stroke-width="4.5" fill="none" stroke-linecap="round" opacity="0.85">
+    <path d="M 320 440 Q 380 390 430 430 Q 480 480 420 520 Q 350 550 340 470"/>
+    <path d="M 390 430 Q 460 450 450 510 Q 420 560 360 520"/>
+    <path d="M 350 490 Q 390 450 440 470 Q 460 510 410 535"/>
+  </g>
+
+  <!-- Crispy Guanciale bits (deep caramelized bronze) -->
+  <g fill="#7c2d12" stroke="#451a03" stroke-width="1.5">
+    <rect x="360" y="440" width="28" height="20" rx="4" transform="rotate(15 374 450)"/>
+    <rect x="420" y="470" width="32" height="22" rx="5" transform="rotate(-25 436 481)"/>
+    <rect x="330" y="490" width="26" height="18" rx="4" transform="rotate(40 343 499)"/>
+    <rect x="440" y="420" width="24" height="19" rx="4" transform="rotate(10 452 429)"/>
+    <rect x="390" y="520" width="30" height="21" rx="5" transform="rotate(-12 405 530)"/>
+    <rect x="305" y="455" width="22" height="16" rx="3" transform="rotate(35 316 463)"/>
+    <rect x="475" y="480" width="24" height="17" rx="4" transform="rotate(60 487 488)"/>
+  </g>
+  <!-- Searing highlights on guanciale -->
+  <g fill="#ea580c" opacity="0.75">
+    <circle cx="370" cy="446" r="3"/>
+    <circle cx="434" cy="478" r="4"/>
+    <circle cx="398" cy="527" r="3.5"/>
+  </g>
+
+  <!-- Egg yolk cream gloss -->
+  <ellipse cx="400" cy="485" rx="50" ry="35" fill="#fef08a" opacity="0.35" filter="url(#softGlow)"/>
+
+  <!-- Pecorino cheese shavings -->
+  <g fill="#fffbeb" opacity="0.9">
+    <rect x="345" y="435" width="16" height="5" rx="2" transform="rotate(30 353 437)"/>
+    <rect x="430" y="450" width="20" height="6" rx="2" transform="rotate(-15 440 453)"/>
+    <rect x="380" y="480" width="18" height="5" rx="2" transform="rotate(55 389 482)"/>
+    <rect x="410" y="515" width="22" height="6" rx="2" transform="rotate(-40 421 518)"/>
+    <rect x="350" y="530" width="17" height="5" rx="2" transform="rotate(20 358 532)"/>
+    <rect x="455" y="465" width="15" height="5" rx="2" transform="rotate(70 462 467)"/>
+  </g>
+
+  <!-- Cracked black pepper flecks -->
+  <g fill="#1c1917" opacity="0.85">
+    <circle cx="340" cy="420" r="2.5"/><circle cx="365" cy="430" r="2"/><circle cx="390" cy="415" r="3"/>
+    <circle cx="445" cy="435" r="2.5"/><circle cx="460" cy="460" r="3"/><circle cx="420" cy="465" r="2"/>
+    <circle cx="375" cy="475" r="2.5"/><circle cx="350" cy="495" r="3"/><circle cx="385" cy="510" r="2.5"/>
+    <circle cx="430" cy="530" r="3"/><circle cx="415" cy="495" r="2"/><circle cx="470" cy="515" r="2.5"/>
+    <circle cx="330" cy="525" r="2"/><circle cx="405" cy="445" r="3"/><circle cx="320" cy="460" r="2.5"/>
+    <circle cx="280" cy="440" r="1.5"/><circle cx="500" cy="480" r="2"/>
+  </g>
+</svg>
