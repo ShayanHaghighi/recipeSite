@@ -13,7 +13,7 @@ export function RecipeCard({ recipe, priority = false }: RecipeCardProps) {
       <Link
         href={`/recipes/${recipe.slug}`}
         aria-label={`View recipe: ${recipe.title}`}
-        className="group relative block w-full rounded-2xl overflow-hidden shadow-[0_4px_20px_rgba(40,30,20,0.06)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.4)] hover:shadow-[0_20px_40px_rgba(40,30,20,0.18)] dark:hover:shadow-[0_20px_40px_rgba(0,0,0,0.6)] transition-all duration-300 ease-out ring-1 ring-stone-950/10 dark:ring-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-600 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-stone-900 bg-stone-950 cursor-pointer"
+        className="group relative block w-full rounded-2xl overflow-hidden shadow-[0_4px_20px_rgba(40,30,20,0.06)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.4)] hover:shadow-[0_20px_40px_rgba(40,30,20,0.18)] dark:hover:shadow-[0_20px_40px_rgba(0,0,0,0.6)] transition-all duration-300 ease-out ring-1 ring-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 bg-stone-950 cursor-pointer"
       >
         {/* Uniform aspect ratio ensures all cards are strictly the exact same size */}
         <div className="relative w-full aspect-[3/4]">
@@ -47,7 +47,7 @@ export function RecipeCard({ recipe, priority = false }: RecipeCardProps) {
           <div className="absolute top-4 left-4 z-10">
             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-medium tracking-wider uppercase bg-stone-950/60 backdrop-blur-md text-stone-200 border border-white/20 shadow-sm">
               <span
-                className="w-1.5 h-1.5 rounded-full bg-amber-400"
+                className="w-1.5 h-1.5 rounded-full bg-accent"
                 aria-hidden="true"
               />
               Recipe
@@ -74,7 +74,7 @@ export function RecipeCard({ recipe, priority = false }: RecipeCardProps) {
                     title={`Prep time: ${recipe.prepTime}`}
                   >
                     <svg
-                      className="w-3.5 h-3.5 text-amber-300 flex-shrink-0"
+                      className="w-3.5 h-3.5 text-accent flex-shrink-0"
                       fill="none"
                       stroke="currentColor"
                       strokeWidth="2"
@@ -94,7 +94,7 @@ export function RecipeCard({ recipe, priority = false }: RecipeCardProps) {
                     title={`Cook time: ${recipe.cookTime}`}
                   >
                     <svg
-                      className="w-3.5 h-3.5 text-amber-300 flex-shrink-0"
+                      className="w-3.5 h-3.5 text-accent flex-shrink-0"
                       fill="none"
                       stroke="currentColor"
                       strokeWidth="2"

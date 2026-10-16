@@ -70,7 +70,7 @@ export default async function RecipePage({ params }: PageProps) {
   };
 
   return (
-    <div className="min-h-screen bg-[#FAF7F2] dark:bg-[#141210] text-stone-900 dark:text-[#F5F0E8] transition-colors duration-300">
+    <div className="min-h-screen bg-canvas text-foreground transition-colors duration-300">
       {/* Schema.org JSON-LD */}
       <script
         type="application/ld+json"

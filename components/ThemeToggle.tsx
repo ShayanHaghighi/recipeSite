@@ -70,7 +70,7 @@ export function ThemeToggle() {
   if (!isClient) {
     return (
       <div
-        className="w-10 h-10 rounded-full border border-stone-300/60 dark:border-stone-700/60 bg-stone-100/40 dark:bg-stone-800/40"
+        className="w-10 h-10 rounded-full border border-border bg-surface-elevated/50"
         aria-hidden="true"
       />
     );
@@ -81,7 +81,7 @@ export function ThemeToggle() {
       type="button"
       onClick={toggleTheme}
       aria-label={`Switch to ${theme === "light" ? "dark" : "light"} theme`}
-      className="group relative flex items-center justify-center w-10 h-10 rounded-full border border-stone-300/80 dark:border-stone-700/80 bg-stone-100/80 dark:bg-stone-800/80 text-stone-700 dark:text-stone-300 hover:text-amber-600 dark:hover:text-amber-400 hover:border-amber-500/50 dark:hover:border-amber-400/50 shadow-xs hover:shadow-md transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-stone-900 cursor-pointer"
+      className="group relative flex items-center justify-center w-10 h-10 rounded-full border border-border bg-surface-elevated text-foreground-muted hover:text-accent hover:border-accent/40 shadow-xs hover:shadow-md transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 cursor-pointer"
     >
       {/* Sun icon */}
       <svg

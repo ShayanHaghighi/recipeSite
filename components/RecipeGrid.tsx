@@ -8,7 +8,7 @@ interface RecipeGridProps {
 export function RecipeGrid({ recipes }: RecipeGridProps) {
   if (recipes.length === 0) {
     return (
-      <div className="text-center py-20 text-stone-500 dark:text-stone-400">
+      <div className="text-center py-20 text-foreground-subtle">
         <p className="text-lg">No recipes found.</p>
       </div>
     );

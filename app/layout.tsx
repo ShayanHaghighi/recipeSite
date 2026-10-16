@@ -47,7 +47,7 @@ export default function RootLayout({
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
       </head>
-      <body className="min-h-full flex flex-col bg-[#FAF7F2] dark:bg-[#141210] text-stone-900 dark:text-[#F5F0E8] transition-colors duration-300 selection:bg-amber-200 selection:text-stone-900 dark:selection:bg-amber-900 dark:selection:text-amber-100">
+      <body className="min-h-full flex flex-col bg-canvas text-foreground transition-colors duration-300 selection:bg-accent-subtle selection:text-foreground">
         {children}
       </body>
     </html>

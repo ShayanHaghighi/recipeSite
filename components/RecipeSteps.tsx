@@ -23,20 +23,20 @@ export function RecipeSteps({ steps }: RecipeStepsProps) {
   const completedCount = Object.values(completedSteps).filter(Boolean).length;
 
   return (
-    <div className="bg-[#FAF7F2] dark:bg-[#181614] rounded-2xl p-6 sm:p-7 border border-stone-200/90 dark:border-stone-800 shadow-[0_4px_20px_rgba(40,30,20,0.04)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.4)]">
+    <div className="bg-surface rounded-2xl p-6 sm:p-7 border border-border shadow-[0_4px_20px_rgba(40,30,20,0.04)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.4)]">
       {/* Header */}
-      <div className="flex items-center justify-between pb-4 mb-2 border-b border-stone-200/80 dark:border-stone-800/80">
+      <div className="flex items-center justify-between pb-4 mb-2 border-b border-border">
         <div className="flex items-center gap-2.5">
           <span
-            className="w-2 h-2 rounded-full bg-amber-600 dark:bg-amber-400"
+            className="w-2 h-2 rounded-full bg-accent"
             aria-hidden="true"
           />
-          <h2 className="text-xl font-serif font-medium text-stone-900 dark:text-[#F5F0E8] tracking-tight">
+          <h2 className="text-xl font-serif font-medium text-foreground tracking-tight">
             Method &amp; Preparation
           </h2>
         </div>
         <div className="flex items-center gap-3">
-          <span className="text-xs font-medium text-stone-500 dark:text-stone-400 bg-stone-200/60 dark:bg-stone-800/70 px-2.5 py-1 rounded-full">
+          <span className="text-xs font-medium text-foreground-subtle bg-surface-elevated px-2.5 py-1 rounded-full">
             {completedCount > 0
               ? `${completedCount}/${steps.length} done`
               : `${steps.length} ${steps.length === 1 ? "step" : "steps"}`}
@@ -45,7 +45,7 @@ export function RecipeSteps({ steps }: RecipeStepsProps) {
             <button
               type="button"
               onClick={resetAll}
-              className="text-xs text-amber-700 dark:text-amber-400 hover:underline font-medium cursor-pointer"
+              className="text-xs text-accent hover:text-accent-hover hover:underline font-medium cursor-pointer"
             >
               Reset
             </button>
@@ -53,12 +53,12 @@ export function RecipeSteps({ steps }: RecipeStepsProps) {
         </div>
       </div>
 
-      <p className="text-xs text-stone-500 dark:text-stone-400 mb-2 font-light">
+      <p className="text-xs text-foreground-subtle mb-2 font-light">
         Tap any step to mark it as completed as you cook:
       </p>
 
       {/* Steps List as a single cohesive tile with dividers */}
-      <ol className="divide-y divide-stone-200/70 dark:divide-stone-800/70" role="list">
+      <ol className="divide-y divide-border-subtle" role="list">
         {steps.map((step, index) => {
           const isCompleted = !!completedSteps[index];
           const stepNumber = String(index + 1).padStart(2, "0");
@@ -68,10 +68,10 @@ export function RecipeSteps({ steps }: RecipeStepsProps) {
               <button
                 type="button"
                 onClick={() => toggleStep(index)}
-                className={`w-full group flex items-center gap-3.5 sm:gap-4 py-4 text-left transition-all duration-200 cursor-pointer ${
+                className={`w-full group flex items-start gap-3.5 sm:gap-4 py-4 text-left transition-all duration-200 cursor-pointer ${
                   isCompleted
                     ? "opacity-50"
-                    : "hover:bg-stone-200/40 dark:hover:bg-stone-800/40 -mx-2 px-2 rounded-xl"
+                    : "hover:bg-surface-hover -mx-2 px-2 rounded-xl"
                 }`}
                 aria-pressed={isCompleted}
               >
@@ -80,7 +80,7 @@ export function RecipeSteps({ steps }: RecipeStepsProps) {
                   className={`shrink-0 flex items-center justify-center w-7 h-7 rounded-full font-serif font-medium text-xs transition-colors duration-200 select-none ${
                     isCompleted
                       ? "bg-emerald-600 text-white"
-                      : "bg-amber-100/90 dark:bg-amber-950/80 text-amber-900 dark:text-amber-300 border border-amber-300/60 dark:border-amber-700/60 group-hover:scale-105"
+                      : "bg-accent-subtle text-accent border border-accent/20 group-hover:scale-105"
                   }`}
                   aria-hidden="true"
                 >
@@ -103,8 +103,8 @@ export function RecipeSteps({ steps }: RecipeStepsProps) {
                 <p
                   className={`text-sm sm:text-base leading-relaxed transition-all duration-200 pt-0.5 ${
                     isCompleted
-                      ? "line-through text-stone-500 dark:text-stone-400"
-                      : "text-stone-800 dark:text-stone-200 font-light"
+                      ? "line-through text-foreground-subtle"
+                      : "text-foreground font-light"
                   }`}
                 >
                   {step}

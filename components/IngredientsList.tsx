@@ -23,20 +23,20 @@ export function IngredientsList({ ingredients }: IngredientsListProps) {
   const checkedCount = Object.values(checkedItems).filter(Boolean).length;
 
   return (
-    <div className="bg-[#FAF7F2] dark:bg-[#181614] rounded-2xl p-6 sm:p-7 border border-stone-200/90 dark:border-stone-800 shadow-[0_4px_20px_rgba(40,30,20,0.04)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.4)]">
+    <div className="bg-surface rounded-2xl p-6 sm:p-7 border border-border shadow-[0_4px_20px_rgba(40,30,20,0.04)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.4)]">
       {/* Header */}
-      <div className="flex items-center justify-between pb-4 mb-4 border-b border-stone-200/80 dark:border-stone-800/80">
+      <div className="flex items-center justify-between pb-4 mb-4 border-b border-border">
         <div className="flex items-center gap-2.5">
           <span
-            className="w-2 h-2 rounded-full bg-amber-600 dark:bg-amber-400"
+            className="w-2 h-2 rounded-full bg-accent"
             aria-hidden="true"
           />
-          <h2 className="text-xl font-serif font-medium text-stone-900 dark:text-[#F5F0E8] tracking-tight">
+          <h2 className="text-xl font-serif font-medium text-foreground tracking-tight">
             Ingredients
           </h2>
         </div>
         <div className="flex items-center gap-3">
-          <span className="text-xs font-medium text-stone-500 dark:text-stone-400 bg-stone-200/60 dark:bg-stone-800/70 px-2.5 py-1 rounded-full">
+          <span className="text-xs font-medium text-foreground-subtle bg-surface-elevated px-2.5 py-1 rounded-full">
             {checkedCount > 0
               ? `${checkedCount}/${ingredients.length} prepped`
               : `${ingredients.length} items`}
@@ -45,7 +45,7 @@ export function IngredientsList({ ingredients }: IngredientsListProps) {
             <button
               type="button"
               onClick={resetAll}
-              className="text-xs text-amber-700 dark:text-amber-400 hover:underline font-medium cursor-pointer"
+              className="text-xs text-accent hover:text-accent-hover hover:underline font-medium cursor-pointer"
             >
               Reset
             </button>
@@ -53,7 +53,7 @@ export function IngredientsList({ ingredients }: IngredientsListProps) {
         </div>
       </div>
 
-      <p className="text-xs text-stone-500 dark:text-stone-400 mb-4 font-light">
+      <p className="text-xs text-foreground-subtle mb-4 font-light">
         Tap items to check them off as you prep in the kitchen:
       </p>
 
@@ -69,8 +69,8 @@ export function IngredientsList({ ingredients }: IngredientsListProps) {
                 onClick={() => toggleItem(index)}
                 className={`w-full group flex items-start gap-3.5 p-3 rounded-xl text-left transition-all duration-200 cursor-pointer ${
                   isChecked
-                    ? "bg-stone-200/40 dark:bg-stone-800/30 opacity-60"
-                    : "hover:bg-stone-200/50 dark:hover:bg-stone-800/50"
+                    ? "bg-surface-elevated/60 opacity-60"
+                    : "hover:bg-surface-hover"
                 }`}
                 aria-pressed={isChecked}
               >
@@ -78,8 +78,8 @@ export function IngredientsList({ ingredients }: IngredientsListProps) {
                 <span
                   className={`mt-0.5 flex-shrink-0 w-5 h-5 rounded-full border flex items-center justify-center transition-colors duration-200 ${
                     isChecked
-                      ? "bg-amber-600 border-amber-600 dark:bg-amber-500 dark:border-amber-500 text-white"
-                      : "border-stone-400/80 dark:border-stone-600 group-hover:border-amber-600 dark:group-hover:border-amber-400 bg-transparent"
+                      ? "bg-accent border-accent text-accent-contrast"
+                      : "border-border group-hover:border-accent bg-transparent"
                   }`}
                   aria-hidden="true"
                 >
@@ -100,8 +100,8 @@ export function IngredientsList({ ingredients }: IngredientsListProps) {
                 <span
                   className={`text-sm leading-relaxed transition-all duration-200 ${
                     isChecked
-                      ? "line-through text-stone-500 dark:text-stone-400"
-                      : "text-stone-800 dark:text-stone-200 font-normal"
+                      ? "line-through text-foreground-subtle"
+                      : "text-foreground font-normal"
                   }`}
                 >
                   {ingredient}
