@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getAllRecipes, getRecipeBySlug } from "@/lib/recipes";
-import { Header } from "@/components/Header";
-import { Divider } from "@/components/Divider";
-import { RecipeHero } from "@/components/RecipeHero";
-import { IngredientsList } from "@/components/IngredientsList";
-import { RecipeSteps } from "@/components/RecipeSteps";
+import { Header } from "@/components/recipe/Header";
+import { Divider } from "@/components/ui/Divider";
+import { RecipeHero } from "@/components/recipe/RecipeHero";
+import { IngredientsList } from "@/components/recipe/IngredientsList";
+import { RecipeSteps } from "@/components/recipe/RecipeSteps";
 
 interface PageProps {
   params: Promise<{

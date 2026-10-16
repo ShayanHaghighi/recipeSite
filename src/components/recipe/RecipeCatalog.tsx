@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useMemo, useRef, useEffect } from "react";
-import type { Recipe } from "@/lib/recipes";
+import type { Recipe } from "@/types/recipe";
 import { RecipeCard } from "./RecipeCard";
 
 interface RecipeCatalogProps {
@@ -10,15 +10,17 @@ interface RecipeCatalogProps {
 }
 
 export function RecipeCatalog({ recipes, tags }: RecipeCatalogProps) {
-  const [selectedTag, setSelectedTag] = useState<string | null>(null);
+  const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   const filteredRecipes = useMemo(() => {
     let result = recipes;
-    if (selectedTag) {
-      result = result.filter((recipe) => recipe.tags?.includes(selectedTag));
+    if (selectedTags.length > 0) {
+      result = result.filter((recipe) =>
+        recipe.tags?.some((tag) => selectedTags.includes(tag))
+      );
     }
     if (searchQuery) {
       const query = searchQuery.toLowerCase();
@@ -30,7 +32,7 @@ export function RecipeCatalog({ recipes, tags }: RecipeCatalogProps) {
       );
     }
     return result;
-  }, [recipes, selectedTag, searchQuery]);
+  }, [recipes, selectedTags, searchQuery]);
 
   const filteredTags = useMemo(() => {
     if (!searchQuery) return tags;
@@ -51,9 +53,16 @@ export function RecipeCatalog({ recipes, tags }: RecipeCatalogProps) {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const toggleTag = (tag: string | null) => {
-    setSelectedTag((prev) => (prev === tag ? null : tag));
+  const toggleTag = (tag: string) => {
+    setSelectedTags((prev) =>
+      prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag]
+    );
     setIsDropdownOpen(false);
+  };
+
+  const clearAll = () => {
+    setSelectedTags([]);
+    setSearchQuery("");
   };
 
   return (
@@ -92,12 +101,18 @@ export function RecipeCatalog({ recipes, tags }: RecipeCatalogProps) {
               type="button"
               onClick={() => setIsDropdownOpen(!isDropdownOpen)}
               className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium border transition-all duration-200 cursor-pointer ${
-                selectedTag
+                selectedTags.length > 0
                   ? "bg-accent text-accent-contrast border-accent shadow-sm"
                   : "bg-surface-elevated text-foreground border-border hover:bg-surface-hover"
               }`}
             >
-              <span>{selectedTag || "All Recipes"}</span>
+              <span>
+                {selectedTags.length === 0
+                  ? "All Recipes"
+                  : selectedTags.length === 1
+                  ? selectedTags[0]
+                  : `${selectedTags.length} Filters`}
+              </span>
               <svg
                 className={`w-4 h-4 transition-transform duration-200 ${
                   isDropdownOpen ? "rotate-180" : ""
@@ -121,18 +136,45 @@ export function RecipeCatalog({ recipes, tags }: RecipeCatalogProps) {
             <div className="absolute z-50 mt-2 w-full bg-surface-elevated border border-border rounded-2xl shadow-xl py-2 max-h-80 overflow-y-auto backdrop-blur-md">
               <button
                 type="button"
-                onClick={() => toggleTag(null)}
-                className={`w-full text-left px-4 py-2 text-sm hover:bg-surface-hover transition-colors ${
-                  selectedTag === null
+                onClick={() => {
+                  setSelectedTags([]);
+                  setIsDropdownOpen(false);
+                }}
+                className={`w-full text-left px-4 py-2 text-sm hover:bg-surface-hover transition-colors flex items-center gap-3 ${
+                  selectedTags.length === 0
                     ? "text-accent font-semibold"
                     : "text-foreground-muted"
                 }`}
               >
-                All Recipes ({recipes.length})
+                <div
+                  className={`w-4 h-4 rounded border flex-shrink-0 flex items-center justify-center transition-colors ${
+                    selectedTags.length === 0
+                      ? "bg-accent border-accent"
+                      : "border-border"
+                  }`}
+                >
+                  {selectedTags.length === 0 && (
+                    <svg
+                      className="w-3 h-3 text-white"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth={3}
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                  )}
+                </div>
+                <span>All Recipes ({recipes.length})</span>
               </button>
               <div className="h-px bg-border my-1 mx-4" />
               {filteredTags.length > 0 ? (
                 filteredTags.map((tag) => {
+                  const isChecked = selectedTags.includes(tag);
                   const count = recipes.filter((r) =>
                     r.tags?.includes(tag)
                   ).length;
@@ -141,13 +183,36 @@ export function RecipeCatalog({ recipes, tags }: RecipeCatalogProps) {
                       key={tag}
                       type="button"
                       onClick={() => toggleTag(tag)}
-                      className={`w-full text-left px-4 py-2 text-sm hover:bg-surface-hover transition-colors ${
-                        selectedTag === tag
+                      className={`w-full text-left px-4 py-2 text-sm hover:bg-surface-hover transition-colors flex items-center gap-3 ${
+                        isChecked
                           ? "text-accent font-semibold"
                           : "text-foreground-muted"
                       }`}
                     >
-                      {tag} ({count})
+                      <div
+                        className={`w-4 h-4 rounded border flex-shrink-0 flex items-center justify-center transition-colors ${
+                          isChecked ? "bg-accent border-accent" : "border-border"
+                        }`}
+                      >
+                        {isChecked && (
+                          <svg
+                            className="w-3 h-3 text-white"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                            strokeWidth={3}
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              d="M5 13l4 4L19 7"
+                            />
+                          </svg>
+                        )}
+                      </div>
+                      <span>
+                        {tag} ({count})
+                      </span>
                     </button>
                   );
                 })
@@ -162,40 +227,52 @@ export function RecipeCatalog({ recipes, tags }: RecipeCatalogProps) {
       </section>
 
       {/* Filter Status Feedback */}
-      {(selectedTag || searchQuery) && (
+      {(selectedTags.length > 0 || searchQuery) && (
         <div className="flex items-center justify-between text-xs text-foreground-muted bg-surface-elevated/50 px-4 py-2.5 rounded-xl border border-border-subtle">
-          <span>
-            Showing{" "}
-            <strong className="text-foreground font-semibold">
-              {filteredRecipes.length}
-            </strong>{" "}
-            {filteredRecipes.length === 1 ? "recipe" : "recipes"}
-            {selectedTag && (
+          <div className="flex flex-wrap items-center gap-x-1">
+            <span>
+              Showing{" "}
+              <strong className="text-foreground font-semibold">
+                {filteredRecipes.length}
+              </strong>{" "}
+              {filteredRecipes.length === 1 ? "recipe" : "recipes"}
+            </span>
+            {selectedTags.length > 0 && (
               <>
-                {" "}
-                tagged with{" "}
-                <span className="inline-block font-semibold text-accent">
-                  &ldquo;{selectedTag}&rdquo;
-                </span>
+                <span>matching tags:</span>
+                <div className="flex flex-wrap gap-1">
+                  {selectedTags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="inline-flex items-center font-semibold text-accent"
+                    >
+                      &ldquo;{tag}&rdquo;
+                      {selectedTags.indexOf(tag) < selectedTags.length - 1 && (
+                        <span className="text-foreground-subtle ml-1">or</span>
+                      )}
+                    </span>
+                  ))}
+                </div>
               </>
             )}
             {searchQuery && (
               <>
-                {" "}
-                matching{" "}
-                <span className="inline-block font-semibold text-accent">
-                  &ldquo;{searchQuery}&rdquo;
+                {selectedTags.length > 0 && (
+                  <span className="text-foreground-subtle">and</span>
+                )}
+                <span>
+                  matching{" "}
+                  <span className="inline-block font-semibold text-accent">
+                    &ldquo;{searchQuery}&rdquo;
+                  </span>
                 </span>
               </>
             )}
-          </span>
+          </div>
           <button
             type="button"
-            onClick={() => {
-              setSelectedTag(null);
-              setSearchQuery("");
-            }}
-            className="text-foreground-subtle hover:text-foreground underline cursor-pointer"
+            onClick={clearAll}
+            className="text-foreground-subtle hover:text-foreground underline cursor-pointer whitespace-nowrap ml-4"
           >
             Clear all
           </button>
@@ -220,14 +297,14 @@ export function RecipeCatalog({ recipes, tags }: RecipeCatalogProps) {
         /* Empty State */
         <div className="text-center py-20 bg-surface rounded-2xl border border-border">
           <p className="text-lg font-serif text-foreground mb-2">
-            No recipes found for &ldquo;{selectedTag}&rdquo;
+            No recipes found
           </p>
           <p className="text-sm text-foreground-muted mb-6">
             Try selecting another tag or view all available recipes.
           </p>
           <button
             type="button"
-            onClick={() => setSelectedTag(null)}
+            onClick={() => setSelectedTags([])}
             className="inline-flex items-center px-4 py-2 rounded-full text-xs font-medium bg-accent text-accent-contrast shadow-sm hover:bg-accent-hover transition-colors cursor-pointer"
           >
             Reset Filters

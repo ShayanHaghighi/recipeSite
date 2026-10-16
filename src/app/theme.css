@@ -4,12 +4,12 @@
    ========================================================================== */
 
 :root {
-  /* Canvas & Page Backgrounds (Warmer, richer golden cream) */
-  --color-canvas: #FAF6F0;
-  --color-surface: #FAF6F0;
-  --color-surface-elevated: #F4ECE1;
-  --color-surface-muted: #EEE2D1;
-  --color-surface-hover: #E8D8C1;
+  /* Canvas & Page Backgrounds (Even warmer, golden honey cream) */
+  --color-canvas: #efcf98;
+  --color-surface: #F9F3E9;
+  --color-surface-elevated: #fff2e0;
+  --color-surface-muted: #EBDDC7;
+  --color-surface-hover: #E4D2B6;
 
   /* Typography (Warmer dark chocolate / roasted hazelnut) */
   --color-foreground: #3D2B1F;
@@ -17,8 +17,8 @@
   --color-foreground-subtle: #9E8975;
 
   /* Borders & Separators (Warm toasted biscuit / light caramel) */
-  --color-border: #E8D8C1;
-  --color-border-subtle: #F0E4D3;
+  --color-border: #E4D2B6;
+  --color-border-subtle: #EDE0CC;
 
   /* Brand Accents (Rich roasted spiced amber) */
   --color-accent: #C45A07;

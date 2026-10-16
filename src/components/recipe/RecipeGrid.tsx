@@ -1,4 +1,4 @@
-import type { Recipe } from "@/lib/recipes";
+import type { Recipe } from "@/types/recipe";
 import { RecipeCard } from "./RecipeCard";
 
 interface RecipeGridProps {

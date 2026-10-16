@@ -1,20 +1,9 @@
 import fs from "fs";
 import path from "path";
 import { loadAll } from "js-yaml";
+import { Recipe } from "@/types/recipe";
 
-export interface Recipe {
-  slug: string;
-  title: string;
-  description: string;
-  image: string;
-  prepTime: string;
-  cookTime: string;
-  tags: string[];
-  ingredients: string[];
-  steps: string[];
-}
-
-const recipesDirectory = path.join(process.cwd(), "recipes");
+const recipesDirectory = path.join(process.cwd(), "content", "recipes");
 
 export function getAllRecipes(): Recipe[] {
   if (!fs.existsSync(recipesDirectory)) {

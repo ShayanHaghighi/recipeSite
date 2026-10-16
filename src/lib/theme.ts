@@ -1,7 +1,7 @@
 /**
  * Central Theme Configuration & Token Definitions
  *
- * All color values are defined in `app/theme.css` and made available as semantic
+ * All color values are defined in `src/app/theme.css` and made available as semantic
  * Tailwind utility classes (`bg-canvas`, `text-foreground`, `border-border`, `text-accent`, etc.).
  */
 

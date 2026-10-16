@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://recipeatelier.local"),
-  title: "The Recipe Atelier — Curated Seasonal & Artisan Recipes",
+  title: "Our Recipes",
   description:
     "A curated collection of minimalist, handcrafted recipes for passionate home cooks.",
 };

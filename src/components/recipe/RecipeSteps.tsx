@@ -100,7 +100,7 @@ export function RecipeSteps({ steps }: RecipeStepsProps) {
                 </span>
 
                 {/* Step text aligned directly beside the number with matched line-height */}
-                <p
+                <span
                   className={`text-sm sm:text-base leading-relaxed transition-all duration-200 pt-0.5 ${
                     isCompleted
                       ? "line-through text-foreground-subtle"
@@ -108,7 +108,7 @@ export function RecipeSteps({ steps }: RecipeStepsProps) {
                   }`}
                 >
                   {step}
-                </p>
+                </span>
               </button>
             </li>
           );

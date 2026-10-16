@@ -1,6 +1,6 @@
 "use client";
 
-import { useSyncExternalStore } from "react";
+import { useSyncExternalStore, useState, useEffect } from "react";
 
 function subscribe(callback: () => void) {
   if (typeof window === "undefined") {
@@ -37,14 +37,12 @@ function getServerSnapshot(): "light" | "dark" {
   return "light";
 }
 
-const emptySubscribe = () => () => {};
-
 export function ThemeToggle() {
-  const isClient = useSyncExternalStore(
-    emptySubscribe,
-    () => true,
-    () => false
-  );
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const theme = useSyncExternalStore(
     subscribe,
@@ -67,7 +65,7 @@ export function ThemeToggle() {
     }
   };
 
-  if (!isClient) {
+  if (!mounted) {
     return (
       <div
         className="w-10 h-10 rounded-full border border-border bg-surface-elevated/50"

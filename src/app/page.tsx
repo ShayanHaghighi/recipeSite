@@ -1,7 +1,7 @@
 import { getAllRecipes, getAllTags } from "@/lib/recipes";
-import { Header } from "@/components/Header";
-import { Divider } from "@/components/Divider";
-import { RecipeCatalog } from "@/components/RecipeCatalog";
+import { Header } from "@/components/recipe/Header";
+import { Divider } from "@/components/ui/Divider";
+import { RecipeCatalog } from "@/components/recipe/RecipeCatalog";
 
 export default function Home() {
   const recipes = getAllRecipes();

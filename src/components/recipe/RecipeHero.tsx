@@ -1,5 +1,5 @@
 import Image from "next/image";
-import type { Recipe } from "@/lib/recipes";
+import type { Recipe } from "@/types/recipe";
 
 interface RecipeHeroProps {
   recipe: Recipe;
