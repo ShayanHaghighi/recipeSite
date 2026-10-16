@@ -5,7 +5,8 @@
 
 :root {
   /* Canvas & Page Backgrounds (Even warmer, golden honey cream) */
-  --color-canvas: #efcf98;
+  --color-canvas: #F7F0DE;
+  --color-canvas-darker: #EBDDC7;
   --color-surface: #F9F3E9;
   --color-surface-elevated: #fff2e0;
   --color-surface-muted: #EBDDC7;
@@ -35,6 +36,7 @@
 .dark {
   /* Canvas & Page Backgrounds (Rich dark chocolate-walnut / warm hearth embers) */
   --color-canvas: #1C1510;
+  --color-canvas-darker: #281F18;
   --color-surface: #221A14;
   --color-surface-elevated: #2E231C;
   --color-surface-muted: #382B22;

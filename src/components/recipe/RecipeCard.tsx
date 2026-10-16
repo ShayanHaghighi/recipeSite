@@ -36,15 +36,15 @@ export function RecipeCard({ recipe, priority = false }: RecipeCardProps) {
 
           {/* Top Ambient Vignette (ensures badge readability) */}
           <div
-            className="absolute inset-0 bg-gradient-to-b from-stone-950/60 via-transparent to-transparent pointer-events-none"
+            className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent pointer-events-none"
             aria-hidden="true"
           />
 
-          {/* Multi-stop Scrim Gradient (guarantees WCAG AA/AAA contrast for text overlay) */}
-          <div
-            className="absolute inset-0 bg-gradient-to-t from-stone-950/95 via-stone-950/70 via-50% to-transparent pointer-events-none"
-            aria-hidden="true"
-          />
+          {/*/!* Multi-stop Scrim Gradient (guarantees WCAG AA/AAA contrast for text overlay) *!/*/}
+          {/*<div*/}
+          {/*  className="absolute inset-0 bg-gradient-to-t from-stone-950/95 via-stone-950/70 via-50% to-transparent pointer-events-none"*/}
+          {/*  aria-hidden="true"*/}
+          {/*/>*/}
 
           {/* Top Primary Tag Badge */}
           <div className="absolute top-2 left-2 sm:top-4 sm:left-4 z-10 flex flex-wrap gap-1 sm:gap-1.5 max-w-[85%]">

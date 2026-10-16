@@ -12,13 +12,13 @@ interface PageProps {
     slug: string;
   }>;
 }
-
+export const instant = false
 // Generate all static paths at build time (SSG requirement)
-export function generateStaticParams() {
-  const recipes = getAllRecipes();
-  return recipes.map((recipe) => ({
-    slug: recipe.slug,
-  }));
+export async function generateStaticParams() {
+    const recipes = await getAllRecipes();
+    return recipes.map((recipe) => ({
+        slug: recipe.slug,
+    }));
 }
 
 // Dynamic SEO metadata
@@ -85,9 +85,7 @@ export default async function RecipePage({ params }: PageProps) {
       <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16">
         {/* Same Shared Header Component */}
         <Header
-          eyebrow={primaryTag}
           title={recipe.title}
-          subtitle={recipe.description}
           backHref="/"
           backLabel="All Recipes"
         />
@@ -101,7 +99,7 @@ export default async function RecipePage({ params }: PageProps) {
           <RecipeHero recipe={recipe} />
 
           {/* Two-Column Editorial Layout: Ingredients & Steps */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-4 items-start">
             {/* Left Column: Ingredients (Sticky on desktop) */}
             <aside className="lg:col-span-5 lg:sticky lg:top-8">
               <IngredientsList ingredients={recipe.ingredients} />

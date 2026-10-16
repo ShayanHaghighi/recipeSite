@@ -5,6 +5,7 @@
 
 @theme inline {
   --color-canvas: var(--color-canvas);
+  --color-canvas-darker: var(--color-canvas-darker);
   --color-surface: var(--color-surface);
   --color-surface-elevated: var(--color-surface-elevated);
   --color-surface-muted: var(--color-surface-muted);
@@ -27,7 +28,8 @@
 }
 
 body {
-  background-color: var(--color-canvas);
+  background: linear-gradient(172deg, var(--color-canvas) 50%, var(--color-canvas-darker) 50.1%);
+  background-attachment: fixed;
   color: var(--color-foreground);
   transition: background-color 0.3s ease, color 0.3s ease;
 }

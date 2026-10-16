@@ -98,7 +98,7 @@ export function IngredientsList({ ingredients }: IngredientsListProps) {
 
                 {/* Ingredient Label */}
                 <span
-                  className={`text-sm leading-relaxed transition-all duration-200 ${
+                  className={`text-base sm:text-lg leading-relaxed transition-all duration-200 ${
                     isChecked
                       ? "line-through text-foreground-subtle"
                       : "text-foreground font-normal"

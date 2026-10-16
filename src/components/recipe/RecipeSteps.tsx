@@ -61,14 +61,14 @@ export function RecipeSteps({ steps }: RecipeStepsProps) {
       <ol className="divide-y divide-border-subtle" role="list">
         {steps.map((step, index) => {
           const isCompleted = !!completedSteps[index];
-          const stepNumber = String(index + 1).padStart(2, "0");
+          const stepNumber = String(index + 1);
 
           return (
             <li key={index}>
               <button
                 type="button"
                 onClick={() => toggleStep(index)}
-                className={`w-full group flex items-start gap-3.5 sm:gap-4 py-4 text-left transition-all duration-200 cursor-pointer ${
+                className={`w-full group flex items-center gap-3.5 sm:gap-4 py-4 text-left transition-all duration-200 cursor-pointer ${
                   isCompleted
                     ? "opacity-50"
                     : "hover:bg-surface-hover -mx-2 px-2 rounded-xl"
@@ -77,7 +77,7 @@ export function RecipeSteps({ steps }: RecipeStepsProps) {
               >
                 {/* Number vertically aligned with the first line of text */}
                 <span
-                  className={`shrink-0 flex items-center justify-center w-7 h-7 rounded-full font-serif font-medium text-xs transition-colors duration-200 select-none ${
+                  className={`shrink-0 flex items-center justify-center size-10 text-center rounded-full font-serif font-medium text-2xl transition-colors duration-200 select-none ${
                     isCompleted
                       ? "bg-emerald-600 text-white"
                       : "bg-accent-subtle text-accent border border-accent/20 group-hover:scale-105"
@@ -101,7 +101,7 @@ export function RecipeSteps({ steps }: RecipeStepsProps) {
 
                 {/* Step text aligned directly beside the number with matched line-height */}
                 <span
-                  className={`text-sm sm:text-base leading-relaxed transition-all duration-200 pt-0.5 ${
+                  className={`text-base sm:text-lg lg:text-xl leading-relaxed transition-all duration-200 pt-0.5 ${
                     isCompleted
                       ? "line-through text-foreground-subtle"
                       : "text-foreground font-light"
