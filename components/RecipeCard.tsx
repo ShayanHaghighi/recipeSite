@@ -8,6 +8,9 @@ interface RecipeCardProps {
 }
 
 export function RecipeCard({ recipe, priority = false }: RecipeCardProps) {
+  const primaryTag = recipe.tags?.[0];
+  const secondaryTags = recipe.tags?.slice(1, 4) || [];
+
   return (
     <article className="break-inside-avoid mb-6">
       <Link
@@ -43,19 +46,33 @@ export function RecipeCard({ recipe, priority = false }: RecipeCardProps) {
             aria-hidden="true"
           />
 
-          {/* Top Category Badge */}
-          <div className="absolute top-4 left-4 z-10">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-medium tracking-wider uppercase bg-stone-950/60 backdrop-blur-md text-stone-200 border border-white/20 shadow-sm">
+          {/* Top Primary Tag Badge */}
+          <div className="absolute top-4 left-4 z-10 flex flex-wrap gap-1.5 max-w-[85%]">
+            <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-medium tracking-wider uppercase bg-stone-950/70 backdrop-blur-md text-stone-200 border border-white/20 shadow-sm">
               <span
                 className="w-1.5 h-1.5 rounded-full bg-accent"
                 aria-hidden="true"
               />
-              Recipe
+              {primaryTag || "Recipe"}
             </span>
           </div>
 
           {/* Bottom Text Overlay */}
           <div className="absolute inset-x-0 bottom-0 p-5 sm:p-6 z-10 flex flex-col justify-end text-white">
+            {/* Secondary Tags (compact & unobtrusive) */}
+            {secondaryTags.length > 0 && (
+              <div className="flex flex-wrap gap-1.5 mb-2">
+                {secondaryTags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-medium bg-white/15 backdrop-blur-md text-stone-200 border border-white/15 shadow-xs"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            )}
+
             <h2 className="text-xl sm:text-2xl font-serif font-medium tracking-tight text-white leading-snug drop-shadow-sm group-hover:text-amber-200 transition-colors duration-200 line-clamp-2">
               {recipe.title}
             </h2>

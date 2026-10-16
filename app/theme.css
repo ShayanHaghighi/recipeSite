@@ -1,0 +1,62 @@
+/* ==========================================================================
+   Central Theme Palette & Semantic Design Tokens
+   Modify light and dark values here to update the entire application styling.
+   ========================================================================== */
+
+:root {
+  /* Canvas & Page Backgrounds (Warmer, richer golden cream) */
+  --color-canvas: #FAF6F0;
+  --color-surface: #FAF6F0;
+  --color-surface-elevated: #F4ECE1;
+  --color-surface-muted: #EEE2D1;
+  --color-surface-hover: #E8D8C1;
+
+  /* Typography (Warmer dark chocolate / roasted hazelnut) */
+  --color-foreground: #3D2B1F;
+  --color-foreground-muted: #7A6652;
+  --color-foreground-subtle: #9E8975;
+
+  /* Borders & Separators (Warm toasted biscuit / light caramel) */
+  --color-border: #E8D8C1;
+  --color-border-subtle: #F0E4D3;
+
+  /* Brand Accents (Rich roasted spiced amber) */
+  --color-accent: #C45A07;
+  --color-accent-hover: #A34A05;
+  --color-accent-subtle: #FEF0D8;
+  --color-accent-contrast: #FFFFFF;
+
+  /* Media Tile Scrims & Ambient Overlays (Warm sepia cocoa scrims) */
+  --color-overlay-scrim: rgba(26, 17, 11, 0.95);
+  --color-overlay-scrim-mid: rgba(26, 17, 11, 0.70);
+  --color-overlay-vignette: rgba(26, 17, 11, 0.55);
+}
+
+.dark {
+  /* Canvas & Page Backgrounds (Rich dark chocolate-walnut / warm hearth embers) */
+  --color-canvas: #1C1510;
+  --color-surface: #221A14;
+  --color-surface-elevated: #2E231C;
+  --color-surface-muted: #382B22;
+  --color-surface-hover: #44352A;
+
+  /* Typography (Warm golden pastry / toasted custard) */
+  --color-foreground: #F8EFE0;
+  --color-foreground-muted: #B8A894;
+  --color-foreground-subtle: #8F7F6C;
+
+  /* Borders & Separators (Warm roasted bronze & cedar borders) */
+  --color-border: #3D2F24;
+  --color-border-subtle: #30241B;
+
+  /* Brand Accents (Glowing warm amber & golden apricot) */
+  --color-accent: #F59E0B;
+  --color-accent-hover: #FBBF24;
+  --color-accent-subtle: #562B07;
+  --color-accent-contrast: #1C1510;
+
+  /* Media Tile Scrims & Ambient Overlays */
+  --color-overlay-scrim: rgba(26, 17, 11, 0.95);
+  --color-overlay-scrim-mid: rgba(26, 17, 11, 0.70);
+  --color-overlay-vignette: rgba(26, 17, 11, 0.55);
+}

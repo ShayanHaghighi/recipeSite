@@ -6,6 +6,8 @@ interface RecipeHeroProps {
 }
 
 export function RecipeHero({ recipe }: RecipeHeroProps) {
+  const primaryTag = recipe.tags?.[0] || "Artisan Kitchen";
+
   return (
     <div className="space-y-6 sm:space-y-8">
       {/* Featured Photo with Editorial Presentation */}
@@ -36,7 +38,7 @@ export function RecipeHero({ recipe }: RecipeHeroProps) {
               className="w-2 h-2 rounded-full bg-accent"
               aria-hidden="true"
             />
-            Artisan Kitchen
+            {primaryTag}
           </span>
         </div>
       </div>
@@ -74,6 +76,23 @@ export function RecipeHero({ recipe }: RecipeHeroProps) {
           </span>
         </div>
       </div>
+
+      {/* Compact Recipe Tags Row */}
+      {recipe.tags && recipe.tags.length > 0 && (
+        <div className="flex flex-wrap items-center gap-2 pt-1">
+          <span className="text-[11px] font-semibold uppercase tracking-wider text-foreground-subtle mr-1 select-none">
+            Tags:
+          </span>
+          {recipe.tags.map((tag) => (
+            <span
+              key={tag}
+              className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-surface-elevated text-foreground-muted border border-border shadow-xs"
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

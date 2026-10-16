@@ -9,6 +9,7 @@ export interface Recipe {
   image: string;
   prepTime: string;
   cookTime: string;
+  tags: string[];
   ingredients: string[];
   steps: string[];
 }
@@ -51,6 +52,14 @@ export function getAllRecipes(): Recipe[] {
       cookTime: String(
         mergedData.cookTime || mergedData.cooktime || mergedData.cook_time || ""
       ),
+      tags: Array.isArray(mergedData.tags)
+        ? mergedData.tags.map(String)
+        : typeof mergedData.tags === "string"
+        ? mergedData.tags
+            .split(",")
+            .map((s: string) => s.trim())
+            .filter(Boolean)
+        : [],
       ingredients: Array.isArray(mergedData.ingredients)
         ? mergedData.ingredients.map(String)
         : [],
@@ -63,6 +72,13 @@ export function getAllRecipes(): Recipe[] {
   });
 
   return recipes;
+}
+
+export function getAllTags(): string[] {
+  const recipes = getAllRecipes();
+  const tagSet = new Set<string>();
+  recipes.forEach((r) => r.tags.forEach((t) => tagSet.add(t)));
+  return Array.from(tagSet).sort();
 }
 
 export function getRecipeBySlug(slug: string): Recipe | null {

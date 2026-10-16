@@ -37,6 +37,7 @@ export async function generateMetadata({
   return {
     title: `${recipe.title} — The Recipe Atelier`,
     description: recipe.description,
+    keywords: recipe.tags,
     openGraph: {
       title: recipe.title,
       description: recipe.description,
@@ -53,6 +54,8 @@ export default async function RecipePage({ params }: PageProps) {
     notFound();
   }
 
+  const primaryTag = recipe.tags?.[0] || "Artisan Recipe";
+
   // Schema.org/Recipe structured data (SEO requirement)
   const jsonLd = {
     "@context": "https://schema.org",
@@ -62,6 +65,8 @@ export default async function RecipePage({ params }: PageProps) {
     image: recipe.image,
     prepTime: recipe.prepTime,
     cookTime: recipe.cookTime,
+    keywords: recipe.tags.join(", "),
+    recipeCategory: primaryTag,
     recipeIngredient: recipe.ingredients,
     recipeInstructions: recipe.steps.map((step) => ({
       "@type": "HowToStep",
@@ -80,7 +85,7 @@ export default async function RecipePage({ params }: PageProps) {
       <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16">
         {/* Same Shared Header Component */}
         <Header
-          eyebrow="Artisan Recipe"
+          eyebrow={primaryTag}
           title={recipe.title}
           subtitle={recipe.description}
           backHref="/"
