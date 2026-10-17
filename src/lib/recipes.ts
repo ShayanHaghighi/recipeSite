@@ -9,7 +9,6 @@ const recipesDirectory = path.join(process.cwd(), "content", "recipes");
 // 2. Wrap in React cache(). If Layout.tsx, Page.tsx, and a Sidebar component 
 // all call getAllRecipes(), it only executes the filesystem read ONCE.
 export const getAllRecipes = cache(async (): Promise<Recipe[]> => {
-  "use cache";
   try {
     // 3. Use async readdir to avoid blocking the event loop
     const fileNames = await fs.readdir(recipesDirectory);

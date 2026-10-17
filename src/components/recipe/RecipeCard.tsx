@@ -24,7 +24,7 @@ export function RecipeCard({ recipe, priority = false }: RecipeCardProps) {
           {recipe.frontmatter.image ? (
             <Image
               src={recipe.frontmatter.image}
-              alt={recipe.frontmatter.title}
+              alt={recipe.frontmatter.image}
               fill
               sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
               priority={priority}

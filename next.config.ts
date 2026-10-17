@@ -2,9 +2,7 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   /* config options here */
-    allowedDevOrigins: ['192.168.0.253'],
-  cacheComponents: true,
-  partialPrefetching: true,
+    output: 'export',
   turbopack: {
     rules: {
       "*.css": {

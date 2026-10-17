@@ -27,11 +27,9 @@ export async function generateMetadata({
   const { slug } = await params;
   const recipe = await getRecipeBySlug(slug);
 
-  if (!recipe) {
-    return {
-      title: "Recipe Not Found",
-    };
-  }
+    if (!recipe) {
+        notFound();
+    }
 
   return {
     title: `${recipe.frontmatter.title} — The Recipe Atelier`,
