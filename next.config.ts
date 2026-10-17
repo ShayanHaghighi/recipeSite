@@ -1,16 +1,19 @@
-import type { NextConfig } from "next";
+import type {NextConfig} from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+    /* config options here */
     output: 'export',
-  turbopack: {
-    rules: {
-      "*.css": {
-        loaders: ["@tailwindcss/turbopack"],
-        as: "*.css",
-      },
+    images: {
+        unoptimized: true, // Add this to fix static image paths
     },
-  },
+    turbopack: {
+        rules: {
+            "*.css": {
+                loaders: ["@tailwindcss/turbopack"],
+                as: "*.css",
+            },
+        },
+    },
 };
 
 export default nextConfig;

@@ -1,4 +1,5 @@
 {
   "name": "recipe-site",
-  "upload_source_maps": true
+  "upload_source_maps": true,
+  "pages_build_output_dir": "out"
 }
