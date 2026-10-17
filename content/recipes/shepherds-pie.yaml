@@ -1,44 +1,43 @@
 ---
-title: Shepherds Pie
-description: A hearty and comforting dish made with minced beef, potatoes, and cheese.
-image: /recipes/sourdough-bread.jpg
-prepTime: 30 mins
-cookTime: 45 mins
-tags:
-  - Meat
-  - Potluck
-  - Comfort Food
-  - Dinner
-
+title: Shepherds pie
+description: A delicious recipe for Shepherds pie.
+image: /recipes/carbonara.jpg
+prepTime: ''
+cookTime: ''
+tags: []
 ingredients:
-  - 500g minced beef
-  - 2 onions
-  - 1 carrot
-  - Balsamic vinegar
-  - Old bay seasoning
-  - Salt
-  - Pepper
-  - 2 Tomatoes
-  - Garlic
-  - Tomato puree
-  - Rosemary
-  - Thyme
-  - 7 medium sided potatoes (or 5 large)
-  - Cheddar cheese
-  - Bay leaf
-  - Ketchup
+- 500g minced beef
+- 2 onions
+- 1 carrot
+- Balsamic vinegar
+- Old bay seasoning
+- Salt
+- Pepper
+- 2 Tomatoes
+- Garlic
+- Tomato puree
+- Rosemary
+- Thyme
+- 7 medium sided potatoes (or 5 large)
+- Cheddar cheese
+- Bay leaf
+- Ketchup
 steps:
-  - Peel, cut, and boil 7 medium-sized potatoes until soft.
-  - While this is boiling, cut your carrot, onions, and tomatoes into small cubes.
-  - Add some oil to a pot and add in the carrot, onions, and tomatoes.
-  - To this pot, add in a tsp of garlic and some tomato puree.
-  - Add in the minced beef and season with the seasonings mentioned and add in a splash of balsamic vinegar.
-  - Cook the beef until cooked through (6-10 minutes).
-  - Once the potatoes are finished, mash them with salt, pepper, mixed herbs, cheese, etc. (you may also choose to add butter and/or milk to your mash).
-  - In your baking dish, first add a thin layer of cheese at the bottom (optional).
-  - Then add your beef layer.
-  - Then another thin layer of cheese.
-  - Then spread the mash potato onto this.
-  - Finally, top with cheese.
-  - Bake in the oven at 200 fan oven (220 otherwise/gas mark 6) for 20-25 mins or until the cheese is golden on top.
+- Peel, cut and boil 7 medium sized potatoes until soft.
+- Whilst this is boiling cut your carrot, onions and tomatoes into small cubes.
+- Add some oil to a pot and add in the carrot, onions and tomatoes.
+- To this pot add in a tsp of garlic and some tomato puree.
+- Add in the minced beef and season with the seasonings mentioned and add in a splash
+  of balsamic vinegar.
+- Cook the beef until cooked through (6–10minutes)
+- Once the potatoes are finished, mash season with salt, pepper, mixed herbs, cheese
+  etc and mash them (you may also choose to add butter and/or milk to your mash)
+- In your baking dish first add a thin layer of cheese at the bottom (optional)
+- Then add your beef layer.
+- Then another thin layer of cheese.
+- Then spread the mash potato onto this.
+- Finally top with cheese.
+- Bake in the oven at 200 fan oven (220 otherwise/gas mark 6) for 20-25mins or until
+  the cheese is golden on top.
+draft: false
 ---

@@ -1,27 +1,25 @@
 ---
-title: Protein Apple Crumble
-description: A delicious apple crumble made with chia seeds, flax seeds, and oats.
+title: Protein apple crumble
+description: A delicious recipe for Protein apple crumble.
 image: /recipes/carbonara.jpg
-prepTime: 20 mins
-cookTime: 30 mins
-tags:
-  - Dessert
-  - Healthy
-  - Breakfast
-
+prepTime: ''
+cookTime: ''
+tags: []
 ingredients:
-  - 1 apple (I used braeburn)
-  - Chia seeds
-  - Flax seeds
-  - Cinnamon
-  - Oats
-  - Water or milk
-  - 1/2 shortbread
-  - Sugar or other sweetener (optional)
+- 1 apple (I used braeburn)
+- Chia seeds
+- Flax seeds
+- Cinnamon
+- Oats
+- Water or milk
+- 1/2 shortbread
+- Sugar or other sweetener (optional)
 steps:
-  - Cut up the apple into small cubes.
-  - To a pot, add the apple, chia seeds, flax seeds, and a bit of water. Cook for 5-10 minutes (if the water evaporates, be sure to add more).
-  - Add your oats and cook like normal.
-  - I like to add 2 tsp of golden sugar to mine.
-  - Crumble 1/2 a shortbread on top.
+- cut up the apple into small cubes
+- To a pot add the apple, chia seeds, flax seeds and a bit of water - then cook for
+  5-10 minutes (if the water evaporates be sure to add more)
+- Add your oats and cook like normal
+- I like to add 2 tsp of golden sugar to mine
+- Crumble 1/2 a shortbread on top
+draft: false
 ---
