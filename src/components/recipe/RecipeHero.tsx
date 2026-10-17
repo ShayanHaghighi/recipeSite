@@ -7,29 +7,29 @@ interface RecipeHeroProps {
 }
 
 export function RecipeHero({ recipe }: RecipeHeroProps) {
-  const primaryTag = recipe.tags?.[0] || "Artisan Kitchen";
+  const primaryTag = recipe.frontmatter.tags?.[0] || "Artisan Kitchen";
 
   return (
     <div className="space-y-6 sm:space-y-8 mb-4">
         <div className="grid grid-cols-2 mb-4 sm:grid-cols-2 gap-3 sm:gap-4">
-            {recipe.prepTime && (
+            {recipe.frontmatter.prepTime && (
                 <div className="bg-surface p-4 rounded-xl border border-border text-center shadow-xs">
             <span className="block text-[11px] font-semibold uppercase tracking-wider text-foreground-subtle mb-1">
               Prep Time
             </span>
                     <span className="text-lg sm:text-xl lg:text-2xl font-serif font-medium text-foreground">
-              {recipe.prepTime}
+              {recipe.frontmatter.prepTime}
             </span>
                 </div>
             )}
 
-            {recipe.cookTime && (
+            {recipe.frontmatter.cookTime && (
                 <div className="bg-surface p-4 rounded-xl border border-border text-center shadow-xs">
             <span className="block text-[11px] font-semibold uppercase tracking-wider text-foreground-subtle mb-1">
               Cook Time
             </span>
                     <span className="text-lg sm:text-xl lg:text-2xl font-serif font-medium text-foreground">
-              {recipe.cookTime}
+              {recipe.frontmatter.cookTime}
             </span>
                 </div>
             )}
@@ -47,10 +47,10 @@ export function RecipeHero({ recipe }: RecipeHeroProps) {
 
       {/* Featured Photo with Editorial Presentation */}
       <div className="relative mb-4 w-full aspect-[16/10] sm:aspect-[16/9] max-h-[540px] rounded-2xl sm:rounded-3xl overflow-hidden shadow-[0_8px_30px_rgba(40,30,20,0.08)] dark:shadow-[0_8px_30px_rgba(0,0,0,0.5)] ring-1 ring-border bg-stone-950">
-        {recipe.image ? (
+        {recipe.frontmatter.image ? (
           <Image
-            src={recipe.image}
-            alt={`Freshly prepared ${recipe.title}`}
+            src={recipe.frontmatter.image}
+            alt={`Freshly prepared ${recipe.frontmatter.title}`}
             fill
             priority
             sizes="(max-width: 1280px) 100vw, 1200px"

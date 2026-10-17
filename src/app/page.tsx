@@ -3,9 +3,9 @@ import { Header } from "@/components/recipe/Header";
 import { Divider } from "@/components/ui/Divider";
 import { RecipeCatalog } from "@/components/recipe/RecipeCatalog";
 
-export default function Home() {
-  const recipes = getAllRecipes();
-  const tags = getAllTags();
+export default async function Home() {
+  const recipes = await getAllRecipes();
+  const tags = await getAllTags();
 
   return (
     <div className="min-h-screen bg-canvas text-foreground transition-colors duration-300">

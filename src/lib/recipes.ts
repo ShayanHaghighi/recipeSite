@@ -1,76 +1,81 @@
-import fs from "fs";
+import { promises as fs } from "fs";
 import path from "path";
-import { loadAll } from "js-yaml";
-import { Recipe } from "@/types/recipe";
+import { cache } from "react";
+import matter from "gray-matter";
+import { Recipe, RecipeSchema } from "@/types/recipe";
 
 const recipesDirectory = path.join(process.cwd(), "content", "recipes");
 
-export function getAllRecipes(): Recipe[] {
-  if (!fs.existsSync(recipesDirectory)) {
-    return [];
-  }
+// 2. Wrap in React cache(). If Layout.tsx, Page.tsx, and a Sidebar component 
+// all call getAllRecipes(), it only executes the filesystem read ONCE.
+export const getAllRecipes = cache(async (): Promise<Recipe[]> => {
+  "use cache";
+  try {
+    // 3. Use async readdir to avoid blocking the event loop
+    const fileNames = await fs.readdir(recipesDirectory);
+    
+    // 4. Use Promise.all to read all files concurrently, not one by one
+    const recipes = await Promise.all(
+      fileNames
+        // Only process yaml/yml/markdown/mdx files
+        .filter((fileName) => 
+          fileName.endsWith(".yaml") || 
+          fileName.endsWith(".yml") || 
+          fileName.endsWith(".md") || 
+          fileName.endsWith(".mdx")
+        )
+        .map(async (fileName) => {
+          const slug = fileName.replace(/\.ya?ml$/, "").replace(/\.mdx?$/, "");
+          const fullPath = path.join(recipesDirectory, fileName);
+          
+          const fileContents = await fs.readFile(fullPath, "utf8");
+          const { data, content } = matter(fileContents);
 
-  const fileNames = fs.readdirSync(recipesDirectory);
-  const yamlFiles = fileNames.filter(
-    (fileName) => fileName.endsWith(".yaml") || fileName.endsWith(".yml")
-  );
+          // 5. Validate the parsed YAML against our Zod schema.
+          // safeParse prevents the whole build from crashing if ONE file is bad.
+          const parsedFrontmatter = RecipeSchema.safeParse(data);
 
-  const recipes = yamlFiles.map((fileName) => {
-    const slug = fileName.replace(/\.ya?ml$/, "");
-    const fullPath = path.join(recipesDirectory, fileName);
-    const fileContents = fs.readFileSync(fullPath, "utf8");
+          if (!parsedFrontmatter.success) {
+            // A senior dev leaves helpful error breadcrumbs
+            console.error(
+              `❌ Invalid frontmatter in ${fileName}:\n`,
+              parsedFrontmatter.error.flatten().fieldErrors
+            );
+            return null; // We'll filter this out below
+          }
 
-    // loadAll handles multi-document files (frontmatter + body) as well as single-doc YAML
-    const docs = loadAll(fileContents).filter(
-      (doc): doc is Record<string, unknown> =>
-        typeof doc === "object" && doc !== null
+          return {
+            slug,
+            frontmatter: parsedFrontmatter.data,
+            content,
+          };
+        })
     );
 
-    const mergedData = Object.assign({}, ...docs);
+    // 6. Filter out any nulls (failed validations) and drafts, then sort by title
+    return recipes
+      .filter((recipe): recipe is Recipe => recipe !== null)
+      .filter((recipe) => !recipe.frontmatter.draft)
+      .sort((a, b) => a.frontmatter.title.localeCompare(b.frontmatter.title));
 
-    const recipe: Recipe = {
-      slug,
-      title: String(mergedData.title || slug),
-      description: String(mergedData.description || ""),
-      image: String(
-        mergedData.image || mergedData.imagePath || mergedData.image_path || ""
-      ),
-      prepTime: String(
-        mergedData.prepTime || mergedData.preptime || mergedData.prep_time || ""
-      ),
-      cookTime: String(
-        mergedData.cookTime || mergedData.cooktime || mergedData.cook_time || ""
-      ),
-      tags: Array.isArray(mergedData.tags)
-        ? mergedData.tags.map(String)
-        : typeof mergedData.tags === "string"
-        ? mergedData.tags
-            .split(",")
-            .map((s: string) => s.trim())
-            .filter(Boolean)
-        : [],
-      ingredients: Array.isArray(mergedData.ingredients)
-        ? mergedData.ingredients.map(String)
-        : [],
-      steps: Array.isArray(mergedData.steps)
-        ? mergedData.steps.map(String)
-        : [],
-    };
+  } catch (error) {
+    // Graceful fallback if the directory doesn't exist yet
+    if ((error as NodeJS.ErrnoException).code === 'ENOENT') {
+      console.warn("⚠️ Recipes directory not found. Returning empty array.");
+      return [];
+    }
+    throw error;
+  }
+});
 
-    return recipe;
-  });
-
-  return recipes;
-}
-
-export function getAllTags(): string[] {
-  const recipes = getAllRecipes();
+export const getAllTags = async (): Promise<string[]> => {
+  const recipes = await getAllRecipes();
   const tagSet = new Set<string>();
-  recipes.forEach((r) => r.tags.forEach((t) => tagSet.add(t)));
+  recipes.forEach((r) => r.frontmatter.tags.forEach((t) => tagSet.add(t)));
   return Array.from(tagSet).sort();
-}
+};
 
-export function getRecipeBySlug(slug: string): Recipe | null {
-  const recipes = getAllRecipes();
+export const getRecipeBySlug = async (slug: string): Promise<Recipe | null> => {
+  const recipes = await getAllRecipes();
   return recipes.find((r) => r.slug === slug) || null;
-}
+};

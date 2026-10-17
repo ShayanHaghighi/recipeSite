@@ -20,16 +20,16 @@ export function RecipeCatalog({ recipes, tags }: RecipeCatalogProps) {
     let result = recipes;
     if (selectedTags.length > 0) {
       result = result.filter((recipe) =>
-        recipe.tags?.some((tag) => selectedTags.includes(tag))
+        recipe.frontmatter.tags?.some((tag) => selectedTags.includes(tag))
       );
     }
     if (searchQuery) {
       const query = searchQuery.toLowerCase();
       result = result.filter(
         (recipe) =>
-          recipe.title.toLowerCase().includes(query) ||
-          recipe.description?.toLowerCase().includes(query) ||
-          recipe.tags?.some((tag) => tag.toLowerCase().includes(query))
+          recipe.frontmatter.title.toLowerCase().includes(query) ||
+          recipe.frontmatter.description?.toLowerCase().includes(query) ||
+          recipe.frontmatter.tags?.some((tag) => tag.toLowerCase().includes(query))
       );
     }
     return result;
@@ -178,7 +178,7 @@ export function RecipeCatalog({ recipes, tags }: RecipeCatalogProps) {
                                   filteredTags.map((tag) => {
                                       const isChecked = selectedTags.includes(tag);
                                       const count = recipes.filter((r) =>
-                                          r.tags?.includes(tag)
+                                          r.frontmatter.tags?.includes(tag)
                                       ).length;
                                       return (
                                           <button

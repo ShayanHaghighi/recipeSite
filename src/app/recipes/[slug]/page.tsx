@@ -12,7 +12,6 @@ interface PageProps {
     slug: string;
   }>;
 }
-export const instant = false
 // Generate all static paths at build time (SSG requirement)
 export async function generateStaticParams() {
     const recipes = await getAllRecipes();
@@ -26,49 +25,49 @@ export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const recipe = getRecipeBySlug(slug);
+  const recipe = await getRecipeBySlug(slug);
 
   if (!recipe) {
     return {
-      title: "Recipe Not Found — The Recipe Atelier",
+      title: "Recipe Not Found",
     };
   }
 
   return {
-    title: `${recipe.title} — The Recipe Atelier`,
-    description: recipe.description,
-    keywords: recipe.tags,
+    title: `${recipe.frontmatter.title} — The Recipe Atelier`,
+    description: recipe.frontmatter.description,
+    keywords: recipe.frontmatter.tags,
     openGraph: {
-      title: recipe.title,
-      description: recipe.description,
-      images: recipe.image ? [{ url: recipe.image }] : [],
+      title: recipe.frontmatter.title,
+      description: recipe.frontmatter.description,
+      images: recipe.frontmatter.image ? [{ url: recipe.frontmatter.image }] : [],
     },
   };
 }
 
 export default async function RecipePage({ params }: PageProps) {
   const { slug } = await params;
-  const recipe = getRecipeBySlug(slug);
+  const recipe = await getRecipeBySlug(slug);
 
   if (!recipe) {
     notFound();
   }
 
-  const primaryTag = recipe.tags?.[0] || "Artisan Recipe";
+  const primaryTag = recipe.frontmatter.tags?.[0] || "Artisan Recipe";
 
   // Schema.org/Recipe structured data (SEO requirement)
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Recipe",
-    name: recipe.title,
-    description: recipe.description,
-    image: recipe.image,
-    prepTime: recipe.prepTime,
-    cookTime: recipe.cookTime,
-    keywords: recipe.tags.join(", "),
+    name: recipe.frontmatter.title,
+    description: recipe.frontmatter.description,
+    image: recipe.frontmatter.image,
+    prepTime: recipe.frontmatter.prepTime,
+    cookTime: recipe.frontmatter.cookTime,
+    keywords: recipe.frontmatter.tags.join(", "),
     recipeCategory: primaryTag,
-    recipeIngredient: recipe.ingredients,
-    recipeInstructions: recipe.steps.map((step) => ({
+    recipeIngredient: recipe.frontmatter.ingredients,
+    recipeInstructions: recipe.frontmatter.steps.map((step) => ({
       "@type": "HowToStep",
       text: step,
     })),
@@ -85,7 +84,7 @@ export default async function RecipePage({ params }: PageProps) {
       <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16">
         {/* Same Shared Header Component */}
         <Header
-          title={recipe.title}
+          title={recipe.frontmatter.title}
           backHref="/"
           backLabel="All Recipes"
         />
@@ -102,12 +101,12 @@ export default async function RecipePage({ params }: PageProps) {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-4 items-start">
             {/* Left Column: Ingredients (Sticky on desktop) */}
             <aside className="lg:col-span-5 lg:sticky lg:top-8">
-              <IngredientsList ingredients={recipe.ingredients} />
+              <IngredientsList ingredients={recipe.frontmatter.ingredients} />
             </aside>
 
             {/* Right Column: Steps */}
             <section className="lg:col-span-7">
-              <RecipeSteps steps={recipe.steps} />
+              <RecipeSteps steps={recipe.frontmatter.steps} />
             </section>
           </div>
         </article>
